@@ -10,7 +10,8 @@
     "docker:db-start": "docker start postgres",
     "lint": "eslint . --ext .ts",
     "lint-fix": "eslint . --ext .ts --fix",
-    "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js"
+    "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js",
+    "ga": "git add . && git commit "
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
