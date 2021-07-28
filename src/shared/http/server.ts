@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import express, { NextFunction, Request, Response } from 'express';
+import express, { Request, Response, NextFunction } from 'express';
 import 'express-async-errors';
 import cors from 'cors';
 import routes from './routes';
@@ -36,5 +36,8 @@ app.use(
 );
 
 app.listen(port, () =>
-  console.log('\n\nServer started at http://localhost:' + port),
+  // eslint-disable-next-line no-console
+  console.log(
+    `\n\n[ON] Server started at http://localhost:${port}\n\nCompiled at ${new Date().toLocaleString()}`,
+  ),
 );

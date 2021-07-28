@@ -49,7 +49,7 @@ export default class EtherealMail {
 
     const mailTemplate = new HandlebarsMailTemplate();
 
-    const message = await transporter.sendMail({
+    await transporter.sendMail({
       from: {
         name: from?.name || 'Equipe API Vendas',
         address: from?.email || 'equipe@apivendas.com.br',
@@ -61,8 +61,5 @@ export default class EtherealMail {
       subject,
       html: await mailTemplate.parse(templateData),
     });
-
-    console.log('Message sent: %s', message.messageId);
-    console.log('Preview URL: %s', nodemailer.getTestMessageUrl(message));
   }
 }

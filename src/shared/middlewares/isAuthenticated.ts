@@ -30,7 +30,6 @@ export default function isAuthenticated(
     request.user = {
       id: sub,
     };
-
     return next();
   } catch {
     throw new AppError('Invalid JWT Token');
