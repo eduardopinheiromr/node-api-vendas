@@ -121,3 +121,4 @@ uploads/*
 !uploads/.gitkeep
 
 ormconfig.json
+todo.md
