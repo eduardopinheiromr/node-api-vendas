@@ -4,8 +4,7 @@ import { getCustomRepository } from 'typeorm';
 import path from 'path';
 import UsersRepository from '../typeorm/repositories/UsersRepository';
 import UserTokensRepository from '../typeorm/repositories/UserTokensRepository';
-import { config } from 'dotenv';
-config();
+import 'dotenv/config';
 interface IRequest {
   email: string;
 }
@@ -38,7 +37,7 @@ class SendForgotPasswordEmailService {
         file: forgotPasswordTemplate,
         variables: {
           name: user.name,
-          link: `${process.env.BASE_URL}/reset?token=${token}`,
+          link: `${process.env.API_URL}/reset?token=${token}`,
         },
       },
     });
