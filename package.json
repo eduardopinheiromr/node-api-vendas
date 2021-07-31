@@ -6,6 +6,7 @@
   "license": "MIT",
   "scripts": {
     "test": "echo \"Error: no test specified\" &amp;&amp; exit 1",
+    "start": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules src/shared/http/server.ts",
     "dev": "yarn docker:db-start && yarn docker:redis-start && ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules src/shared/http/server.ts",
     "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files",
     "docker:db-start": "docker start postgres",
