@@ -122,4 +122,5 @@ uploads/*
 
 ormconfig.json
 todo.md
-/temp
+temp/
+build/
