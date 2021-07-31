@@ -1,10 +1,14 @@
-import EtherealMail from '@config/mail/EtherealMail';
 import AppError from '@shared/errors/AppError';
 import { getCustomRepository } from 'typeorm';
 import path from 'path';
 import UsersRepository from '../typeorm/repositories/UsersRepository';
 import UserTokensRepository from '../typeorm/repositories/UserTokensRepository';
 import 'dotenv/config';
+
+import EtherealMail from '@config/mail/EtherealMail';
+import { mailConfig } from '@config/mail/';
+import ZohoMail from '@config/mail/ZohoMail';
+
 interface IRequest {
   email: string;
 }
@@ -30,6 +34,21 @@ class SendForgotPasswordEmailService {
       'forgot_password.hbs',
     );
 
+    if (mailConfig.driver === 'zoho') {
+      await ZohoMail.sendMail({
+        to: { name: user.name, email },
+        subject: '[API Vendas] Recuperação de Senha',
+        templateData: {
+          file: forgotPasswordTemplate,
+          variables: {
+            name: user.name,
+            link: `${process.env.APP_URL}/password/reset?token=${token}`,
+          },
+        },
+      });
+      return;
+    }
+
     await EtherealMail.sendMail({
       to: { name: user.name, email },
       subject: '[API Vendas] Recuperação de Senha',
@@ -37,7 +56,7 @@ class SendForgotPasswordEmailService {
         file: forgotPasswordTemplate,
         variables: {
           name: user.name,
-          link: `${process.env.API_URL}/reset?token=${token}`,
+          link: `${process.env.APP_URL}/password/reset?token=${token}`,
         },
       },
     });
