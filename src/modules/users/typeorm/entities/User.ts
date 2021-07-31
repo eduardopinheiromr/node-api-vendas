@@ -36,7 +36,7 @@ class User {
       return null;
     }
 
-    return `${process.env.APP_URL}/files/${this.avatar}`;
+    return `${process.env.API_URL}/files/${this.avatar}`;
   }
 }
 
