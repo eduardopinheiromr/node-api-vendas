@@ -124,3 +124,6 @@ ormconfig.json
 todo.md
 temp/
 build/
+
+.development.env
+.production.env

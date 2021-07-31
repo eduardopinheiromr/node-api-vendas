@@ -10,6 +10,12 @@ import ordersRouter from '@modules/orders/routes/orders.routes';
 
 const routes = Router();
 
+const time = new Date().toLocaleString();
+
+routes.get('/', (req, res) => {
+  res.send({ message: 'Servidor funcionando', startedAt: time });
+});
+
 routes.use('/products', productsRouter);
 routes.use('/users', usersRouter);
 routes.use('/sessions', sessionsRouter);
