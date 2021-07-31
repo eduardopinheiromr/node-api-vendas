@@ -6,18 +6,27 @@ const uploadFolder = path.resolve(__dirname, '..', '..', 'uploads');
 const tempFolder = path.resolve(__dirname, '..', '..', 'temp');
 
 const uploadConfig = {
+  driver: process.env.STORAGE_DRIVER,
   directory: uploadFolder,
   tempFolder,
-  storage: multer.diskStorage({
-    destination: tempFolder,
-    filename(request, file, callback) {
-      const fileHash = crypto.randomBytes(10).toString('hex');
+  multer: {
+    storage: multer.diskStorage({
+      destination: tempFolder,
+      filename(request, file, callback) {
+        const fileHash = crypto.randomBytes(10).toString('hex');
 
-      const filename = `${fileHash}-${file.originalname}`;
+        const filename = `${fileHash}-${file.originalname}`;
 
-      callback(null, filename);
+        callback(null, filename);
+      },
+    }),
+  },
+  config: {
+    disk: {},
+    aws: {
+      bucket: 'node-api-vendas',
     },
-  }),
+  },
 };
 
 export default uploadConfig;
