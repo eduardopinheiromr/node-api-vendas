@@ -9,9 +9,10 @@ import '@shared/typeorm';
 import uploadConfig from '@config/upload';
 import { pagination } from 'typeorm-pagination';
 import rateLimiter from '@shared/middlewares/rateLimiter';
+import 'dotenv/config';
 
 const app = express();
-const port = 3000;
+const port = process.env.API_PORT;
 
 app.use(cors());
 app.use(express.json());
@@ -36,6 +37,7 @@ app.use(
       });
     }
 
+    // eslint-disable-next-line no-console
     console.log(error);
 
     return response.status(500).json({
