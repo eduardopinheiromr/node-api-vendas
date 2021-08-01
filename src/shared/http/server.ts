@@ -22,7 +22,6 @@ app.use(rateLimiter);
 app.use(pagination);
 
 app.use('/files', express.static(uploadConfig.directory));
-app.use('/docs', express.static('docs'));
 
 app.use(routes);
 
