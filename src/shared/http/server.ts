@@ -7,6 +7,7 @@ import AppError from '@shared/errors/AppError';
 import { errors } from 'celebrate';
 import '@shared/typeorm';
 import uploadConfig from '@config/upload';
+import docsConfig from '@config/docs';
 import { pagination } from 'typeorm-pagination';
 import rateLimiter from '@shared/middlewares/rateLimiter';
 import 'dotenv/config';
@@ -22,6 +23,7 @@ app.use(rateLimiter);
 app.use(pagination);
 
 app.use('/files', express.static(uploadConfig.directory));
+app.use('/docs', express.static(docsConfig.directory));
 
 app.use(routes);
 
