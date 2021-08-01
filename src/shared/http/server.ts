@@ -9,7 +9,6 @@ import '@shared/typeorm';
 import uploadConfig from '@config/upload';
 import { pagination } from 'typeorm-pagination';
 import rateLimiter from '@shared/middlewares/rateLimiter';
-import insomniaDocs from '@docs/insomnia.json';
 import 'dotenv/config';
 
 const app = express();
@@ -23,7 +22,7 @@ app.use(rateLimiter);
 app.use(pagination);
 
 app.use('/files', express.static(uploadConfig.directory));
-app.get('/docs', (req, res) => res.send(JSON.stringify(insomniaDocs)));
+app.use('/docs', express.static('docs'));
 
 app.use(routes);
 
