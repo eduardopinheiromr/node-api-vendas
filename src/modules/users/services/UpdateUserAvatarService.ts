@@ -5,14 +5,13 @@ import UsersRepository from '../infra/typeorm/repositories/UsersRepository';
 import DiskStorageProvider from '@shared/providers/StorageProviders/DiskStorageProvider';
 import S3StorageProvider from '@shared/providers/StorageProviders/S3StorageProvider';
 import uploadConfig from '@config/upload';
-
-interface IRequest {
-  user_id: string;
-  avatarFilename: string;
-}
+import { IUpdateUserAvatar } from '../domain/models/IUpdateUserAvatar';
 
 class UpdateUserAvatarService {
-  public async execute({ user_id, avatarFilename }: IRequest): Promise<User> {
+  public async execute({
+    user_id,
+    avatarFilename,
+  }: IUpdateUserAvatar): Promise<User> {
     const usersRepository = getCustomRepository(UsersRepository);
 
     const user = await usersRepository.findById(user_id);

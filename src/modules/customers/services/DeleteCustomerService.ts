@@ -1,12 +1,10 @@
 import AppError from '@shared/errors/AppError';
 import { getCustomRepository } from 'typeorm';
+import { ICustomerId } from '../domain/models/ICustomerId';
 import CustomersRepository from '../infra/typeorm/repositories/CustomersRepository';
 
-interface IRequest {
-  id: string;
-}
 class DeleteCustomerService {
-  public async execute({ id }: IRequest): Promise<void> {
+  public async execute({ id }: ICustomerId): Promise<void> {
     const customersRepository = getCustomRepository(CustomersRepository);
 
     const customer = await customersRepository.findById(id);

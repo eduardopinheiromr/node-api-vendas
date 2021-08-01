@@ -8,13 +8,10 @@ import 'dotenv/config';
 import EtherealMail from '@config/mail/EtherealMail';
 import { mailConfig } from '@config/mail/';
 import ZohoMail from '@config/mail/ZohoMail';
-
-interface IRequest {
-  email: string;
-}
+import { IUserEmail } from '../domain/models/IUserEmail';
 
 class SendForgotPasswordEmailService {
-  public async execute({ email }: IRequest): Promise<void> {
+  public async execute({ email }: IUserEmail): Promise<void> {
     const usersRepository = getCustomRepository(UsersRepository);
 
     const user = await usersRepository.findByEmail(email);
